@@ -1,7 +1,7 @@
 # Sample-Django-Blog
 A sample Django blog with list view, detail view, commenting functionality, tables and contact us form
 
-## A Sample Django Blog
+## A Sample Django Blog with:
 
 List View: Display a list of all blog posts with pagination.
 
