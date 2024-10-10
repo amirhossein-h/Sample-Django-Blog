@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+
+{% block page_title %}
+    Casts
+{% endblock page_title %}
+
+{% block content %}
+
+    <div class="container px-4 text-start bg-light">
+        {% for cast in casts %}
+            <div class="row py-3">
+                <div class="col-md-6">
+                    <img src="{{ cast.image.url }}" class="figure-img img-fluid extraimg" alt="{{ cast.title }}">
+                </div>
+                <div class="col-md-6">
+                    <i class="bi bi-circle-fill">
+                        {% if cast.sub_title %}
+                            {{ cast.sub_title|safe }}
+                        {% endif %}
+                    </i>
+                    <br>
+                    {{ cast.description|safe }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

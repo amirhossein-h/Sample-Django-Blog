@@ -1,0 +1,50 @@
+{% extends "_base.html" %}
+
+{% block page_title %}
+    Home
+{% endblock page_title %}
+
+{% block content %}
+
+    <div class="container-md px-4 py-3 bg-light text-center">
+        <div class="row justify-content-center">
+            <div class="col mx-auto">
+                <img src="../../../static/images/header.jpeg" class="img-fluid mx-auto coverimg" alt="headerimg">
+            </div>
+        </div>
+    </div>
+
+    <div class="container px-3 bg-light">
+        <div class="row justify-content-around gx-5">
+            {% for content in contents %}
+                <div class="col-md-6 py-3 d-flex">
+                    <div class="card mx-auto">
+                        {% if content.cover %}
+                            <img src="{{content.cover.url}}" class="card-img-top cardimg" alt="facts">
+                        {% else %}
+                            <img src="../../../static/images/placeholder.jpg" class="card-img-top cardimg" alt="facts">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title" id="h5quote">{{content.title|safe}}</h5>
+                            <p class="card-text">{{content.text|truncatewords:50|safe}}</p>
+                            <a href="{% url 'post_detail_view' pk=content.id %}" class="btn btn-primary">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center mt-3">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+            {% endif %}
+            <li class="page-item"><a class="page-link" href="#">{{page_obj.number}}</a></li>
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+{% endblock content %}

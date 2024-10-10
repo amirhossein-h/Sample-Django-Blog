@@ -1,0 +1,49 @@
+{% extends "_base.html" %}
+
+{% block page_title %}
+    Seasons
+{% endblock page_title %}
+
+{% block content %}
+
+    <div class="container px-4 text-center bg-light">
+        <div class="row py-3">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr class="table-success">
+                            <th scope="col">Season</th>
+                            <th scope="col">Episodes</th>
+                            <th scope="col">First aired</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">Viewers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for table in tables %}
+                            <tr>
+                                <th scope="row"><a href="#{{ table.related_to }}">{{table.col_one}}</a></th>
+                                <td>{{ table.col_two }}</td>
+                                <td>{{ table.col_three }}</td>
+                                <td>{{ table.col_four }}</td>
+                                <td>{{ table.col_five }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="container px-4 bg-light">
+            {% for season in seasons %}
+                <div class="row py-3">
+                    <div class="col text-start">
+                        <h4 id="{{ season.title }}">{{ season.title|safe }}</h4>
+                        {{ season.description|safe }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock content %}
